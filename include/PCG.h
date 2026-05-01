@@ -8,6 +8,7 @@ namespace PCG {
     constexpr int TILE_SIZE = 4;
     constexpr int MAP_COLUMNS = (SCREEN_WIDTH / TILE_SIZE);
     constexpr int MAP_ROWS = (SCREEN_HEIGHT / TILE_SIZE);
+    
 
     // Tile Types (Using Enum for readability)
     typedef enum {
@@ -16,9 +17,17 @@ namespace PCG {
         TILE_COUNT  // Automatically counts total types
     } TileType;
 
+	// Map Generator Types for saving and loading data
+    enum class GeneratorType {
+        GENERATOR_RANDOM = 0,
+		GENERATOR_NOISE = 1
+   };
+
     // Visual & Character settings
     constexpr char GRASS_CHAR = '.';
     constexpr char ROCK_CHAR = '#';
+	constexpr char RANDOM_CHAR = 'R';
+	constexpr char NOISE_CHAR = 'N';
     constexpr Color GRASS_COLOR = { 69, 182, 156, 255 };
     constexpr Color ROCK_COLOR = { 114, 147, 160, 255 };
     constexpr Color UNKNOWN_COLOR = WHITE;
@@ -40,7 +49,8 @@ namespace PCG {
         virtual ~MapGenerator() = default; // virtual destructor
         // This enforces that every child class must write their own Generate function.
         virtual void Generate(TileType _tileArray[MAP_ROWS][MAP_COLUMNS]) = 0;
-    };
+     
+    };  
 
     // Random Map Generator
     class RandomMapGenerator : public MapGenerator {
@@ -62,7 +72,7 @@ namespace PCG {
     public:
         TileMap();  // constructor
         ~TileMap(); // destructor
-
+       
         // Core Actions
         // Function Declarations
         void CreateMap();
@@ -83,6 +93,8 @@ namespace PCG {
         // getter /setter for map generator 
         void SetMapGenerator(MapGenerator* generator);
         MapGenerator* GetMapGenerator() const;
+        char GetGeneratorChar(GeneratorType generatorType) const;
+        GeneratorType GetCurrentGeneratorType() const;
 
 		//Switch between map generators
 		void SwitchMapGenerator(MapGenerator* generator);
