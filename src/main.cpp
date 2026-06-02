@@ -9,7 +9,7 @@ int main() {
    
     PCG::TileMap tileMap;
    
-    tileMap.SetMapGenerator(new PCG::NoiseMapGenerator());
+    tileMap.SetMapGenerator(new PCG::RandomMapGenerator());
     tileMap.GetMapGenerator()->Generate(tileMap.tileArray); 
 
     while (!WindowShouldClose()) {

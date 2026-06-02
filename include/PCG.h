@@ -5,7 +5,7 @@ namespace PCG {
     // Screen & Map Dimensions
     constexpr int SCREEN_WIDTH = 800;
     constexpr int SCREEN_HEIGHT = 800;
-    constexpr int TILE_SIZE = 4;
+    constexpr int TILE_SIZE = 40;
     constexpr int MAP_COLUMNS = (SCREEN_WIDTH / TILE_SIZE);
     constexpr int MAP_ROWS = (SCREEN_HEIGHT / TILE_SIZE);
     
